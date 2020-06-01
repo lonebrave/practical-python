@@ -1,0 +1,8 @@
+version: "3.7"
+services:
+  python:
+    image: nickhasser/practical-python
+    volumes:
+      - "$PWD:/root/"
+    configs:
+      - mode: 0440
