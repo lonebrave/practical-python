@@ -28,7 +28,7 @@ while principal > 0:
             principal = principal * (1+rate/12) - payment
             total_paid = total_paid + payment
 
-    print(months, round(total_paid,2), round(principal,2))
+    print(f'{months:>3d} ${round(total_paid,2):10.2f}, ${round(principal,2):10.2f}')
 
 
 print('Total paid', round(total_paid,2), 'over', months, 'months.')
