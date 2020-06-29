@@ -146,7 +146,7 @@ This is known as a shallow copy.  Here is a picture.
 
 ### Deep copies
 
-Sometimes you need to make a copy of an object and all the objects contained withn it.
+Sometimes you need to make a copy of an object and all the objects contained within it.
 You can use the `copy` module for this:
 
 ```python
@@ -238,7 +238,7 @@ items[1].sqrt(2)    # math
 except items[2]:    # ValueError
 ```
 
-With great power come responsibility.  Just because you can do that doesn't me you should.
+With great power comes responsibility.  Just because you can do that doesn't mean you should.
 
 ## Exercises
 

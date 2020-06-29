@@ -92,7 +92,7 @@ numbers = (2,3,4)
 f(1, *numbers)      # Same as f(1,2,3,4)
 ```
 
-Dictionaries can also be expaded into keyword arguments.
+Dictionaries can also be expanded into keyword arguments.
 
 ```python
 options = {
@@ -149,7 +149,7 @@ TypeError: __init__() takes exactly 4 arguments (2 given)
 
 This is easily fixed using `*data` instead.  Try this:
 
-``python
+```python
 >>> s = Stock(*data)
 >>> s
 Stock('GOOG', 100, 490.1)

@@ -7,7 +7,7 @@ involving dictionaries.  This section discusses that.
 
 ### Dictionaries, Revisited
 
-Remember that a dictionary is a collection of names values.
+Remember that a dictionary is a collection of named values.
 
 ```python
 stock = {
@@ -58,7 +58,7 @@ A dictionary holds the instance data, `__dict__`.
 ```python
 >>> s = Stock('GOOG', 100, 490.1)
 >>> s.__dict__
-{'name' : 'GOOG','shares' : 100, 'price': 490.1 }
+{'name' : 'GOOG', 'shares' : 100, 'price': 490.1 }
 ```
 
 You populate this dict (and instance) when assigning to `self`.
@@ -248,7 +248,7 @@ You can view it.
 >>>
 ```
 
-This chain is called the **Method Resolutin Order**.  The find an
+This chain is called the **Method Resolution Order**.  To find an
 attribute, Python walks the MRO in order. The first match wins.
 
 ### MRO in Multiple Inheritance
@@ -264,14 +264,14 @@ class D(B): pass
 class E(C, D): pass
 ```
 
-What happens when you access at attribute?
+What happens when you access an attribute?
 
 ```python
 e = E()
 e.attr
 ```
 
-A attribute search process is carried out, but what is the order? That's a problem.
+An attribute search process is carried out, but what is the order? That's a problem.
 
 Python uses *cooperative multiple inheritance* which obeys some rules
 about class ordering.
