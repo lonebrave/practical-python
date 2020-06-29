@@ -1,6 +1,7 @@
 # pcost.py
 #
 # Exercise 1.27
+import csv
 
 
 def portfolio_cost(filename):
@@ -10,20 +11,17 @@ def portfolio_cost(filename):
     '''
 
     with open(filename, 'rt') as f:
-        data = f.read()
+        rows = csv.reader(f)
 
-    mylist = data.split()
+        next(rows)
 
-    del mylist[0]
+        totalcost = 0
+        for row in rows:
+            try:
+                totalcost += float(row[1]) * float(row[2])
+            except ValueError:
+                print('Error converting data. Skipping this item.')
 
-    totalcost = 0
-    for item in mylist:
-        symbol, shares, cost = item.split(',')
-        try:
-            totalcost += float(shares) * float(cost)
-        except ValueError:
-            print('Error converting data. Skipping this item.')
-    
     return totalcost
 
 
