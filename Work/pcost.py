@@ -2,16 +2,26 @@
 #
 # Exercise 1.27
 
-with open('Data/portfolio.csv', 'rt') as f:
-    data = f.read()
 
-mylist = data.split()
+def portfolio_cost(filename):
+    '''
+    Takes a filename as input, reads the portfolio data in that file,
+    and returns the total cost of the portfolio as a float.
+    '''
 
-del mylist[0]
+    with open(filename, 'rt') as f:
+        data = f.read()
 
-totalcost = 0
-for item in mylist:
-    symbol, shares, cost = item.split(',')
-    totalcost += float(shares) * float(cost)
+    mylist = data.split()
 
-print('Total cost: {}'.format(totalcost))
+    del mylist[0]
+
+    totalcost = 0
+    for item in mylist:
+        symbol, shares, cost = item.split(',')
+        totalcost += float(shares) * float(cost)
+    
+    return totalcost
+
+
+print('Total cost: {}'.format(portfolio_cost('Data/portfolio.csv')))
