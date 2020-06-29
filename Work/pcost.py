@@ -19,7 +19,10 @@ def portfolio_cost(filename):
     totalcost = 0
     for item in mylist:
         symbol, shares, cost = item.split(',')
-        totalcost += float(shares) * float(cost)
+        try:
+            totalcost += float(shares) * float(cost)
+        except ValueError:
+            print('Error converting data. Skipping this item.')
     
     return totalcost
 
