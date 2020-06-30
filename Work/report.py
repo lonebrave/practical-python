@@ -34,10 +34,7 @@ def read_prices(filename):
     return prices
 
 
-def main():
-    portfolio = read_portfolio('Data/portfolio.csv')
-    prices = read_prices('Data/prices.csv')
-
+def calculate_gain(portfolio, prices):
     basis = 0.0
     current_value = 0.0
     for stock in portfolio:
