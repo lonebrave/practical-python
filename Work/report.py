@@ -45,5 +45,14 @@ def calculate_gain(portfolio, prices):
     print('Gain is {:0.2f}'.format(gain))
 
 
-if __name__ == '__main__':
-    main()
+def make_report(portfolio, prices):
+    report = []
+    for stock in portfolio:
+        change = prices[stock['name']] - stock['price']
+        report.append((stock['name'],
+                       stock['shares'],
+                       stock['price'],
+                       change
+                       ))
+
+    return report
