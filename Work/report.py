@@ -28,7 +28,7 @@ def read_prices(filename):
         next(rows)  # Skip the header
         for row in rows:
             try:
-                prices[row[0]] = row[1]
+                prices[row[0]] = float(row[1])
             except IndexError:
                 pass
 
