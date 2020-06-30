@@ -2,6 +2,7 @@
 #
 # Exercise 2.4
 import csv
+import sys
 
 
 def read_portfolio(filename):
@@ -9,11 +10,12 @@ def read_portfolio(filename):
 
     with open(filename) as f:
         rows = csv.reader(f)
-        next(rows)
+        headers = next(rows)
         for row in rows:
-            holding = {'name': row[0],
-                       'shares': int(row[1]),
-                       'price': float(row[2])
+            record = dict(zip(headers, row))
+            holding = {'name': record['name'],
+                       'shares': int(record['shares']),
+                       'price': float(record['price'])
                        }
             portfolio.append(holding)
 
@@ -59,7 +61,12 @@ def make_report(portfolio, prices):
 
 
 def main():
-    portfolio = read_portfolio('Data/portfolio.csv')
+    if len(sys.argv) == 2:
+        filename = sys.argv[1]
+    else:
+        filename = 'Data/portfolio.csv'
+
+    portfolio = read_portfolio(filename)
     prices = read_prices('Data/prices.csv')
 
     report = make_report(portfolio, prices)
