@@ -56,3 +56,16 @@ def make_report(portfolio, prices):
                        ))
 
     return report
+
+
+def main():
+    portfolio = read_portfolio('Data/portfolio.csv')
+    prices = read_prices('Data/prices.csv')
+
+    report = make_report(portfolio, prices)
+    for name, shares, price, gain in report:
+        print(f'{name:>10s} {shares:>10d} {price:>10.2f} {gain:10.2f}')
+
+
+if __name__ == "__main__":
+    main()
