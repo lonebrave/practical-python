@@ -67,7 +67,8 @@ def main():
     print('{:>10s} {:>10s} {:>10s} {:>10s}'.format(*headers))
     print('-'*10, '-'*10, '-'*10, '-'*10)
     for name, shares, price, gain in report:
-        print(f'{name:>10s} {shares:>10d} {price:>10.2f} {gain:10.2f}')
+        price = f'${price:.2f}'
+        print(f'{name:>10s} {shares:>10d} {price:>10s} {gain:10.2f}')
 
 
 if __name__ == "__main__":
