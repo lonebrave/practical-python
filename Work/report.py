@@ -32,3 +32,21 @@ def read_prices(filename):
                 pass
 
     return prices
+
+
+def main():
+    portfolio = read_portfolio('Data/portfolio.csv')
+    prices = read_prices('Data/prices.csv')
+
+    basis = 0.0
+    current_value = 0.0
+    for stock in portfolio:
+        basis += stock['shares'] * stock['price']
+        current_value += stock['shares'] * prices[stock['name']]
+
+    gain = current_value - basis
+    print('Gain is {:0.2f}'.format(gain))
+
+
+if __name__ == '__main__':
+    main()
