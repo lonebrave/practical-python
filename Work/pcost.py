@@ -17,11 +17,11 @@ def portfolio_cost(filename):
         next(rows)
 
         totalcost = 0
-        for row in rows:
+        for n, row in enumerate(rows, start=1):
             try:
                 totalcost += float(row[1]) * float(row[2])
             except ValueError:
-                print('Error converting data. Skipping this item.')
+                print(f"Row {n}: Couldn't convert: {row}")
 
     return totalcost
 
