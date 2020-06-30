@@ -18,3 +18,18 @@ def read_portfolio(filename):
             portfolio.append(holding)
 
     return portfolio
+
+
+def read_prices(filename):
+    prices = {}
+
+    with open(filename) as f:
+        rows = csv.reader(f)
+        next(rows)  # Skip the header
+        for row in rows:
+            try:
+                prices[row[0]] = row[1]
+            except IndexError:
+                pass
+
+    return prices
