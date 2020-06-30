@@ -25,7 +25,6 @@ def read_prices(filename):
 
     with open(filename) as f:
         rows = csv.reader(f)
-        next(rows)  # Skip the header
         for row in rows:
             try:
                 prices[row[0]] = float(row[1])
