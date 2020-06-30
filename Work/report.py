@@ -63,6 +63,9 @@ def main():
     prices = read_prices('Data/prices.csv')
 
     report = make_report(portfolio, prices)
+    headers = ('Name', 'Shares', 'Price', 'Change')
+    print('{:>10s} {:>10s} {:>10s} {:>10s}'.format(*headers))
+    print('-'*10, '-'*10, '-'*10, '-'*10)
     for name, shares, price, gain in report:
         print(f'{name:>10s} {shares:>10d} {price:>10.2f} {gain:10.2f}')
 
