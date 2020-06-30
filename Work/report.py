@@ -51,7 +51,7 @@ def make_report(portfolio, prices):
         change = prices[stock['name']] - stock['price']
         report.append((stock['name'],
                        stock['shares'],
-                       stock['price'],
+                       prices[stock['name']],
                        change
                        ))
 
