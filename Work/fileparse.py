@@ -35,7 +35,7 @@ def parse_csv(filename, select=None, types=None, has_headers=True,
                 if indices:
                     row = [row[index] for index in indices]
 
-                # Apply type conversion, is specified
+                # Apply type conversion, if specified
                 if types:
                     row = [func(val) for func, val in zip(types, row)]
 
