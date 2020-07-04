@@ -91,17 +91,29 @@ def print_report(report):
     return
 
 
-def main():
-    if len(sys.argv) == 2:
-        filename = sys.argv[1]
-    else:
-        filename = 'Data/portfolio.csv'
+def portfolio_report(portfolio_filename, prices_filename):
+    '''
+    Read the provided portfolio and prices files and print the report.
+    '''
 
-    portfolio = read_portfolio(filename)
-    prices = read_prices('Data/prices.csv')
+    portfolio = read_portfolio(portfolio_filename)
+    prices = read_prices(prices_filename)
 
     report = make_report(portfolio, prices)
     print_report(report)
+
+    return
+
+
+def main():
+    if len(sys.argv) == 2:
+        portfolio_filename = sys.argv[1]
+    else:
+        portfolio_filename = 'Data/portfolio.csv'
+
+    prices_filename = 'Data/prices.csv'
+
+    portfolio_report(portfolio_filename, prices_filename)
 
 
 if __name__ == "__main__":
