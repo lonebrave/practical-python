@@ -60,6 +60,17 @@ def make_report(portfolio, prices):
     return report
 
 
+def print_report(report):
+    headers = ('Name', 'Shares', 'Price', 'Change')
+    print('{:>10s} {:>10s} {:>10s} {:>10s}'.format(*headers))
+    print('-'*10, '-'*10, '-'*10, '-'*10)
+    for name, shares, price, gain in report:
+        price = f'${price:.2f}'
+        print(f'{name:>10s} {shares:>10d} {price:>10s} {gain:10.2f}')
+
+    return
+
+
 def main():
     if len(sys.argv) == 2:
         filename = sys.argv[1]
@@ -70,12 +81,7 @@ def main():
     prices = read_prices('Data/prices.csv')
 
     report = make_report(portfolio, prices)
-    headers = ('Name', 'Shares', 'Price', 'Change')
-    print('{:>10s} {:>10s} {:>10s} {:>10s}'.format(*headers))
-    print('-'*10, '-'*10, '-'*10, '-'*10)
-    for name, shares, price, gain in report:
-        price = f'${price:.2f}'
-        print(f'{name:>10s} {shares:>10d} {price:>10s} {gain:10.2f}')
+    print_report(report)
 
 
 if __name__ == "__main__":
