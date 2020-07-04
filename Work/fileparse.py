@@ -53,7 +53,11 @@ def parse_csv(filename, select=None, types=None, has_headers=True,
 
                 record = ()
                 for index, val in enumerate(row):
-                    record += (types[index](val),)
+                    # Apply type conversion, if specified
+                    if types:
+                        record += (types[index](val),)
+                    else:
+                        record += (val,)
 
                 records.append(record)
 
