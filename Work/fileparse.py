@@ -5,64 +5,51 @@ import csv
 
 
 def parse_csv(filename, select=None, types=None, has_headers=True,
-              delimiter=','):
+              delimiter=',', silence_errors=False):
     '''
     Parse a CSV file into a list of records
     '''
+    if select and not has_headers:
+        raise RuntimeError('select argument requires column headers')
 
     with open(filename) as f:
         rows = csv.reader(f, delimiter=delimiter)
 
         records = []
 
-        if has_headers:
-            # Read the file headers
-            headers = next(rows)
+        # Read the file headers
+        headers = next(rows) if has_headers else []
 
-            # Use select fields if specified, otherwise use all headers from
-            # file
+        # Use select fields if specified, otherwise use all headers from
+        # file
+        if select:
+            indices = [headers.index(colname) for colname in select]
+            headers = select
+
+        for line, row in enumerate(rows, start=1):
+            if not row:     # Skip rows with no data
+                continue
+
+            # Only use selected fields, if specified
             if select:
-                indices = [headers.index(colname) for colname in select]
-                headers = select
-            else:
-                indices = []
+                row = [row[index] for index in indices]
 
-            for line, row in enumerate(rows, start=1):
-                if not row:     # Skip rows with no data
-                    continue
-
-                # Only use selected fields, if specified
-                if indices:
-                    row = [row[index] for index in indices]
-
-                # Apply type conversion, if specified
+            # Apply type conversion, if specified
+            if types:
                 try:
-                    if types:
-                        row = [func(val) for func, val in zip(types, row)]
+                    row = [func(val) for func, val in zip(types, row)]
                 except ValueError as e:
-                    print(f"Row {line}: Couldn't convert {row}")
-                    print(f'Row {line}: Reason {e}')
-
-                # Create dictionary
-                record = dict(zip(headers, row))
-
-                records.append(record)
-        else:
-            if select:
-                raise RuntimeError('select argument requires column headers')
-
-            for row in rows:
-                if not row:     # Skip rows with no data
+                    if not silence_errors:
+                        print(f"Row {line}: Couldn't convert {row}")
+                        print(f'Row {line}: Reason {e}')
                     continue
 
-                record = ()
-                for index, val in enumerate(row):
-                    # Apply type conversion, if specified
-                    if types:
-                        record += (types[index](val),)
-                    else:
-                        record += (val,)
+            # Create record
+            if headers:
+                record = dict(zip(headers, row))
+            else:
+                record = tuple(row)
 
-                records.append(record)
+            records.append(record)
 
     return records
