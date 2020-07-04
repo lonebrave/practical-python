@@ -6,6 +6,10 @@ import sys
 
 
 def read_portfolio(filename):
+    '''
+    Read the portfolio file and return a portfolio list.
+    '''
+
     portfolio = []
 
     with open(filename) as f:
@@ -23,6 +27,10 @@ def read_portfolio(filename):
 
 
 def read_prices(filename):
+    '''
+    Read the prices file and return a prices dictionary.
+    '''
+
     prices = {}
 
     with open(filename) as f:
@@ -37,6 +45,10 @@ def read_prices(filename):
 
 
 def calculate_gain(portfolio, prices):
+    '''
+    Calculate and print the gain based on the portfolio and prices.
+    '''
+
     basis = 0.0
     current_value = 0.0
     for stock in portfolio:
@@ -48,6 +60,10 @@ def calculate_gain(portfolio, prices):
 
 
 def make_report(portfolio, prices):
+    '''
+    Generate the report list based on the porfolio and prices.
+    '''
+
     report = []
     for stock in portfolio:
         change = prices[stock['name']] - stock['price']
@@ -61,6 +77,10 @@ def make_report(portfolio, prices):
 
 
 def print_report(report):
+    '''
+    Print a report based on the passed in report list.
+    '''
+
     headers = ('Name', 'Shares', 'Price', 'Change')
     print('{:>10s} {:>10s} {:>10s} {:>10s}'.format(*headers))
     print('-'*10, '-'*10, '-'*10, '-'*10)
