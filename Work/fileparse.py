@@ -44,6 +44,9 @@ def parse_csv(filename, select=None, types=None, has_headers=True,
 
                 records.append(record)
         else:
+            if select:
+                raise RuntimeError('select argument requires column headers')
+
             for row in rows:
                 if not row:     # Skip rows with no data
                     continue
