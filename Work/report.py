@@ -2,6 +2,7 @@
 #
 # Exercise 2.4
 from fileparse import parse_csv
+import stock
 
 
 def read_portfolio(filename):
@@ -10,7 +11,8 @@ def read_portfolio(filename):
     '''
 
     with open(filename) as f:
-        portfolio = parse_csv(f, types=[str, int, float])
+        portdict = parse_csv(f, select=['name', 'shares', 'price'], types=[str, int, float])
+    portfolio = [stock.Stock(d['name'], d['shares'], d['price']) for d in portdict]
 
     return portfolio
 
@@ -33,9 +35,9 @@ def calculate_gain(portfolio, prices):
 
     basis = 0.0
     current_value = 0.0
-    for stock in portfolio:
-        basis += stock['shares'] * stock['price']
-        current_value += stock['shares'] * prices[stock['name']]
+    for s in portfolio:
+        basis += s.shares * s.price
+        current_value += s.shares * prices[s.name]
 
     gain = current_value - basis
     print('Gain is {:0.2f}'.format(gain))
@@ -47,11 +49,11 @@ def make_report(portfolio, prices):
     '''
 
     report = []
-    for stock in portfolio:
-        change = prices[stock['name']] - stock['price']
-        report.append((stock['name'],
-                       stock['shares'],
-                       prices[stock['name']],
+    for s in portfolio:
+        change = prices[s.name] - s.price
+        report.append((s.name,
+                       s.shares,
+                       prices[s.name],
                        change
                        ))
 

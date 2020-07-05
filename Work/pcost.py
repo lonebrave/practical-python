@@ -13,8 +13,8 @@ def portfolio_cost(filename):
     portfolio = read_portfolio(filename)
 
     totalcost = 0
-    for row in portfolio:
-        totalcost += row['shares'] * row['price']
+    for s in portfolio:
+        totalcost += s.shares * s.price
 
     return totalcost
 
