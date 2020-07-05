@@ -74,7 +74,7 @@ def print_report(report, formatter):
     return
 
 
-def portfolio_report(portfolio_filename, prices_filename):
+def portfolio_report(portfolio_filename, prices_filename, fmt='txt'):
     '''
     Read the provided portfolio and prices files and print the report.
     '''
@@ -84,9 +84,7 @@ def portfolio_report(portfolio_filename, prices_filename):
 
     report = make_report(portfolio, prices)
 
-    # formatter = tableformat.TextTableFormatter()
-    # formatter = tableformat.CSVTableFormatter()
-    formatter = tableformat.HTMLTableFormatter()
+    formatter = tableformat.create_formatter(fmt)
     print_report(report, formatter)
 
     return

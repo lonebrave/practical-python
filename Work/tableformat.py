@@ -54,3 +54,18 @@ class HTMLTableFormatter(TableFormatter):
         for d in rowdata:
             print(f'<td>{d}</td>', end='')
         print('</tr>')
+
+
+def create_formatter(name):
+    '''
+    Returns a formatter object based on the name.
+    '''
+    if name == 'txt':
+        formatter = TextTableFormatter()
+    elif name == 'csv':
+        formatter = CSVTableFormatter()
+    elif name == 'html':
+        formatter = HTMLTableFormatter()
+    else:
+        raise RuntimeError(f'Unknown format {name}')
+    return formatter
