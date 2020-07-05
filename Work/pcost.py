@@ -1,7 +1,6 @@
 # pcost.py
 #
 # Exercise 1.27
-import sys
 from report import read_portfolio
 
 
@@ -20,9 +19,15 @@ def portfolio_cost(filename):
     return totalcost
 
 
-if len(sys.argv) == 2:
-    filename = sys.argv[1]
-else:
-    filename = 'Data/portfolio.csv'
+def main(argv):
+    if len(argv) == 2:
+        filename = argv[1]
+    else:
+        filename = 'Data/portfolio.csv'
 
-print('Total cost: {}'.format(portfolio_cost(filename)))
+    print('Total cost: {}'.format(portfolio_cost(filename)))
+
+
+if __name__ == '__main__':
+    import sys
+    main(sys.argv)

@@ -2,7 +2,6 @@
 #
 # Exercise 2.4
 from fileparse import parse_csv
-import sys
 
 
 def read_portfolio(filename):
@@ -86,16 +85,17 @@ def portfolio_report(portfolio_filename, prices_filename):
     return
 
 
-def main():
-    if len(sys.argv) == 2:
-        portfolio_filename = sys.argv[1]
+def main(argv):
+    if len(argv) == 3:
+        portfolio_filename = argv[1]
+        prices_filename = argv[2]
     else:
         portfolio_filename = 'Data/portfolio.csv'
-
-    prices_filename = 'Data/prices.csv'
+        prices_filename = 'Data/prices.csv'
 
     portfolio_report(portfolio_filename, prices_filename)
 
 
 if __name__ == "__main__":
-    main()
+    import sys
+    main(sys.argv)
