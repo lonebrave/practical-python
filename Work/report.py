@@ -91,14 +91,16 @@ def portfolio_report(portfolio_filename, prices_filename, fmt='txt'):
 
 
 def main(argv):
-    if len(argv) == 3:
+    if len(argv) == 4:
         portfolio_filename = argv[1]
         prices_filename = argv[2]
+        fmt = argv[3]
     else:
         portfolio_filename = 'Data/portfolio.csv'
         prices_filename = 'Data/prices.csv'
+        fmt = 'txt'
 
-    portfolio_report(portfolio_filename, prices_filename)
+    portfolio_report(portfolio_filename, prices_filename, fmt)
 
 
 if __name__ == "__main__":
