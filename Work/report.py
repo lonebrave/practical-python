@@ -9,7 +9,8 @@ def read_portfolio(filename):
     Read the portfolio file and return a portfolio list.
     '''
 
-    portfolio = parse_csv(filename, types=[str, int, float])
+    with open(filename) as f:
+        portfolio = parse_csv(f, types=[str, int, float])
 
     return portfolio
 
@@ -19,7 +20,8 @@ def read_prices(filename):
     Read the prices file and return a prices dictionary.
     '''
 
-    prices = dict(parse_csv(filename, has_headers=False, types=[str, float]))
+    with open(filename) as f:
+        prices = dict(parse_csv(f, has_headers=False, types=[str, float]))
 
     return prices
 
