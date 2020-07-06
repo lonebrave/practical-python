@@ -14,7 +14,7 @@ def portfolio_cost(filename):
 
     totalcost = 0
     for s in portfolio:
-        totalcost += s.shares * s.price
+        totalcost += s.cost
 
     return totalcost
 
