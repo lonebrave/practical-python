@@ -11,6 +11,7 @@ class Stock:
         # print(f'Stock({self.name},{self.shares},{self.price})')
         return f"Stock('{self.name}',{self.shares},{self.price})"
 
+    @property
     def cost(self):
         return self.shares * self.price
 
