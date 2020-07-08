@@ -25,6 +25,12 @@ def parse_stock_data(lines):
     return rows
 
 
+def filter_symbols(rows, names):
+    for row in rows:
+        if row['name'] in names:
+            yield row
+
+
 if __name__ == "__main__":
     lines = follow('Data/stocklog.csv')
     rows = parse_stock_data(lines)
