@@ -12,11 +12,7 @@ def portfolio_cost(filename):
 
     portfolio = read_portfolio(filename)
 
-    totalcost = 0
-    for s in portfolio:
-        totalcost += s.cost
-
-    return totalcost
+    return portfolio.total_cost
 
 
 def main(argv):
