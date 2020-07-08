@@ -19,4 +19,3 @@ class Portfolio:
         for s in self._holdings:
             total_shares[s.name] += s.shares
         return total_shares
-
