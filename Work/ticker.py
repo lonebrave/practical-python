@@ -1,6 +1,7 @@
 from follow import follow
 import csv
-
+import tableformat
+import report
 
 def select_columns(rows, indices):
     for row in rows:
@@ -29,6 +30,20 @@ def filter_symbols(rows, names):
     for row in rows:
         if row['name'] in names:
             yield row
+
+
+def ticker(portfile, logfile, fmt):
+    portfolio = report.read_portfolio(portfile)
+    rows = parse_stock_data(follow(logfile))
+    rows = filter_symbols(rows, portfolio)
+
+    columns = ['name', 'price', 'change']
+
+    formatter = tableformat.create_formatter(fmt)
+
+    formatter.headings(columns)
+    for row in rows:
+        formatter.row([ row['name'], f"{row['price']:0.2f}", f"{row['change']:0.2f}"] )
 
 
 if __name__ == "__main__":
