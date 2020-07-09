@@ -3,6 +3,7 @@ import csv
 import tableformat
 import report
 
+
 def select_columns(rows, indices):
     for row in rows:
         yield [row[index] for index in indices]
@@ -43,7 +44,9 @@ def ticker(portfile, logfile, fmt):
 
     formatter.headings(columns)
     for row in rows:
-        formatter.row([ row['name'], f"{row['price']:0.2f}", f"{row['change']:0.2f}"] )
+        formatter.row([row['name'],
+                       f"{row['price']:0.2f}",
+                       f"{row['change']:0.2f}"])
 
 
 if __name__ == "__main__":
