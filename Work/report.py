@@ -7,7 +7,7 @@ from portfolio import Portfolio
 import tableformat
 
 
-def read_portfolio(filename):
+def read_portfolio(filename, **opts):
     '''
     Read the portfolio file and return a portfolio.
     '''
@@ -15,7 +15,8 @@ def read_portfolio(filename):
     with open(filename) as f:
         portdict = parse_csv(f,
                              select=['name', 'shares', 'price'],
-                             types=[str, int, float])
+                             types=[str, int, float],
+                             **opts)
     portfolio = [Stock(**d) for d in portdict]
 
     return Portfolio(portfolio)
