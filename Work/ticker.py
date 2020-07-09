@@ -6,12 +6,12 @@ import report
 
 def select_columns(rows, indices):
     for row in rows:
-        yield [row[index] for index in indices]
+        yield (row[index] for index in indices)
 
 
 def convert_types(rows, types):
     for row in rows:
-        yield [func(val) for func, val in zip(types, row)]
+        yield (func(val) for func, val in zip(types, row))
 
 
 def make_dicts(rows, headers):
