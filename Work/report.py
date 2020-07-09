@@ -89,6 +89,15 @@ def portfolio_report(portfolio_filename, prices_filename, fmt='txt'):
 
 
 def main(argv):
+    import logging
+
+    logging.basicConfig(
+        filename='app.log',
+        filemode='w',
+        # level=logging.WARNING,
+        level=logging.DEBUG,
+    )
+
     if len(argv) == 4:
         portfolio_filename = argv[1]
         prices_filename = argv[2]
